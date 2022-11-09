@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33103.184
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "price-matching-system", "price-matching-system.pyproj", "{6A4B4A3C-656F-48F4-B71A-A377EE602897}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6A4B4A3C-656F-48F4-B71A-A377EE602897}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A4B4A3C-656F-48F4-B71A-A377EE602897}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A4B4A3C-656F-48F4-B71A-A377EE602897}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A4B4A3C-656F-48F4-B71A-A377EE602897}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {951DF5A3-BB1B-4C20-B4D2-BA6587D7DC45}
+	EndGlobalSection
+EndGlobal
