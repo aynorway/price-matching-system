@@ -28,6 +28,12 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="price_matching_system\db.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="price_matching_system\user.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="runserver.py" />
     <Compile Include="price_matching_system\__init__.py" />
     <Compile Include="price_matching_system\views.py" />
