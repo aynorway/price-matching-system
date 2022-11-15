@@ -8,15 +8,26 @@ from flask import request
 from flask import url_for
 from price_matching_system.db import get_conn
 
-bp = Blueprint("user", __name__)
+bp = Blueprint("search", __name__)
 
-@bp.route("/user")
-def UserDetails():
+@bp.post("/search")
+def SearchProduct():
+
+    search_string = (request.form["search-input"])
+    print(search_string)
+
     conn = get_conn()
     cursor = conn.cursor()
-    cursor.execute('SELECT * FROM UserTable')
+    query = "SELECT * FROM tbl_Product WHERE ProductName LIKE " + f"'%{search_string}%'"
+    print(query)
+    cursor.execute(query)
     columns = [column[0] for column in cursor.description]
     results = []
     for row in cursor.fetchall():
         results.append(dict(zip(columns, row)))
-    return results
+    print(results)
+
+    return render_template(
+        'index.html',
+        search_results = results
+    )

@@ -31,7 +31,7 @@
     <Compile Include="price_matching_system\db.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="price_matching_system\user.py">
+    <Compile Include="price_matching_system\search.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="runserver.py" />

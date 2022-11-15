@@ -20,7 +20,7 @@ app.config.from_mapping(
 from price_matching_system import db
 db.init_app(app)
 
-from price_matching_system import user
-app.register_blueprint(user.bp)
+from price_matching_system import search
+app.register_blueprint(search.bp)
 
 import price_matching_system.views
