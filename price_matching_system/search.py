@@ -6,9 +6,21 @@ from flask import redirect
 from flask import render_template
 from flask import request
 from flask import url_for
+from datetime import datetime
+
 from price_matching_system.db import get_conn
 
 bp = Blueprint("search", __name__)
+
+@bp.route('/')
+@bp.route('/home')
+def home():
+    """Renders the home page."""
+    return render_template(
+        'index.html',
+        title='Home Page',
+        year=datetime.now().year,
+    )
 
 @bp.post("/search")
 def SearchProduct():
