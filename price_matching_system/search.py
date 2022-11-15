@@ -13,7 +13,10 @@ bp = Blueprint("search", __name__)
 @bp.post("/search")
 def SearchProduct():
 
-    search_string = (request.form["search-input"])
+    if "search-input" in request.form:
+        search_string = (request.form["search-input"])
+    else:
+        search_string = ''
     print(search_string)
 
     conn = get_conn()
