@@ -33,7 +33,35 @@ def SearchProduct():
 
     conn = get_conn()
     cursor = conn.cursor()
-    query = "SELECT * FROM tbl_Product WHERE ProductName LIKE " + f"'%{search_string}%'"
+    query = """ SELECT 
+                ProductDetailId
+                , ProductName
+                , Model
+                , Year
+                , Storage
+                , SourceName
+                , CAST(Price AS INT) AS Price
+                FROM
+                (
+	                SELECT pd.ProductDetailId
+	                , p.ProductName
+	                , pd.Model
+	                , pd.Year
+	                , pd.Storage
+	                , s.SourceName
+	                , prd.Price
+	                , ROW_NUMBER() OVER (PARTITION BY pd.ProductDetailId ORDER BY Price) AS rownum
+	                FROM dbo.tbl_Product p
+	                INNER JOIN tbl_ProductDetail pd
+	                ON p.ProductId = pd.ProductId
+	                INNER JOIN tbl_PriceDetail prd
+	                ON pd.ProductDetailId = prd.ProductDetailId
+	                INNER JOIN tbl_Source s
+	                ON prd.SourceId = s.SourceId
+	                WHERE PriceDetailDate = CAST(GETDATE() AS Date)
+                ) temp
+                WHERE rownum = 1
+                AND ProductName LIKE""" + f"'%{search_string}%'"
     print(query)
     cursor.execute(query)
     columns = [column[0] for column in cursor.description]
