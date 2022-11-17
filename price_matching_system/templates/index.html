@@ -2,31 +2,36 @@
 
 {% block content %}
 
-<div class="jumbotron">
-    <h1>Flask</h1>
-    <p class="lead">Flask is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://flask.pocoo.org/" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+<div class="p-5 mb-4 mx-5 mt-4 bg-light rounded-3">
+    <h2 class="text-center">Search for any Mobile/Laptop</h2>
+    <form class="row g-3 d-flex justify-content-center mt-2" action="/search" method="post">
+        <div class="col-md-6">
+            <input name="search-input" id="search-input" class="form-control form-control-lg" type="text" placeholder="Product Name" required>
+        </div>
+        <div class="col-auto">
+            <input type="submit" class="btn btn-primary btn-lg" value="Search">
+        </div>
+    </form>
 </div>
 
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            Flask gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://flask.pocoo.org/docs/">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>The Python Package Index is a repository of software for the Python programming language.</p>
-        <p><a class="btn btn-default" href="https://pypi.python.org/pypi">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Microsoft Azure</h2>
-        <p>You can easily publish to Microsoft Azure using Visual Studio. Find out how you can host your application using a free trial today.</p>
-        <p><a class="btn btn-default" href="http://azure.microsoft.com">Learn more &raquo;</a></p>
+    <div class="col-md-12">
+        {% for result in search_results %}
+        <div class="card bg-light mx-5 mt-2">
+            <div class="card-body">
+                <h4 class="card-title">{{ result.get('ProductName', '') ~ ' ' ~ result.get('Model', '') ~  ' ' ~ result.get('Storage', '') ~  ', ' ~ result.get('Year', '')}}</h4>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-9 text-center">
+                            <p class="lead">Best Deal Today By  <span class="display-6">{{ result.get('SourceName', '') }}</span>  @  <span class="display-6"> ${{ result.get('Price', '') }} </span></p>
+                        </div>
+                        <div class="col-2"><a href="" class="link-secondary lead text-decoration-none"><i class="bi bi-clock-fill"></i> View History</a></div>
+                        <div class="col-1"><a href="" class="link-secondary lead text-decoration-none"><i class="bi bi-bookmark-star-fill"></i> Bookmark</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
     </div>
 </div>
 

@@ -3,7 +3,7 @@ This script runs the price_matching_system application using a development serve
 """
 
 from os import environ
-from price_matching_system import app
+from price_matching_system import create_app
 
 if __name__ == '__main__':
     HOST = environ.get('SERVER_HOST', 'localhost')
@@ -11,4 +11,4 @@ if __name__ == '__main__':
         PORT = int(environ.get('SERVER_PORT', '5555'))
     except ValueError:
         PORT = 5555
-    app.run(HOST, PORT)
+    create_app().run(HOST, PORT)

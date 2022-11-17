@@ -28,9 +28,14 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="price_matching_system\db.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="price_matching_system\search.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="runserver.py" />
     <Compile Include="price_matching_system\__init__.py" />
-    <Compile Include="price_matching_system\views.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="price_matching_system\" />
@@ -64,8 +69,6 @@
     <Content Include="price_matching_system\static\scripts\respond.js" />
     <Content Include="price_matching_system\static\scripts\respond.min.js" />
     <Content Include="price_matching_system\static\scripts\_references.js" />
-    <Content Include="price_matching_system\templates\about.html" />
-    <Content Include="price_matching_system\templates\contact.html" />
     <Content Include="price_matching_system\templates\index.html" />
     <Content Include="price_matching_system\templates\layout.html" />
   </ItemGroup>
