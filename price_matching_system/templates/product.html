@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="row mx-5 mt-5 p-5">
+    <div class="col-6 mr-2">
+        <h1><u>{{ product_data.get('ProductName', '') ~ ' ' ~ product_data.get('Model', '') ~  ' ' ~ product_data.get('Storage', '') ~  ', ' ~ product_data.get('Year', '')}}</u></h1>
+        <div class="mt-5">
+            <p style="font-size: 30px; font-weight: normal"> Lowest Recorded Price: ${{ stat_data.get('lowest_price', 0) }}</p>
+            <p style="font-size: 30px; font-weight: normal"> {{ stat_data.get('lowest_price_date', '') }} - {{ stat_data.get('lowest_price_source', 0) }}</p>
+        </div>
+        <div class="mt-5">
+            <p style="font-size: 30px; font-weight: bold">Todays's Prices</p>
+            {% for price in latest_price_data %}
+                <p style="font-size: 30px; font-weight: normal"> ${{ price.get('Price', 0) }} on {{ price.get('SourceName', '') }}</p>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-6 mt-5">
+        <canvas id="chart"></canvas>
+    </div>
+</div>
+
+<script>
+    const ctx = document.getElementById('chart');
+
+    let data = {{ chart_data | tojson }};
+
+    console.log(data);
+
+    let datasets = [];
+    let labels = new Set();
+    for (let key in data) {
+        datasets.push({
+            label: key,
+            data: data[key]['price'],
+            borderWidth: 1,
+            stepped: true
+        });
+        for (date of data[key]['date']) {
+            labels.add(date);
+        }
+    }
+
+    console.log(datasets);
+    console.log(labels);
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [...labels],
+            datasets: datasets
+        },
+        options: {
+            spanGaps: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        // Include a dollar sign in the ticks
+                        callback: function (value, index, ticks) {
+                            return '$' + value;
+                        }
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+{% endblock %}
+
