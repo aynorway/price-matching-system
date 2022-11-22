@@ -7,6 +7,7 @@ from flask import render_template
 from flask import request
 from flask import url_for
 from datetime import datetime
+from flask import session
 
 from price_matching_system.db import get_conn
 
@@ -16,10 +17,14 @@ bp = Blueprint("search", __name__)
 @bp.route('/home')
 def home():
     """Renders the home page."""
+    user = {}
+    if 'user' in session:
+        user = session['user']
     return render_template(
         'index.html',
         title='Home Page',
         year=datetime.now().year,
+        user=user
     )
 
 @bp.post("/search")

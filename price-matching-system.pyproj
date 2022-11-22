@@ -31,6 +31,7 @@
     <Compile Include="price_matching_system\db.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="price_matching_system\login.py" />
     <Compile Include="price_matching_system\search.py">
       <SubType>Code</SubType>
     </Compile>
@@ -46,9 +47,8 @@
     <Folder Include="price_matching_system\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="price_matching_system\templates\login.html" />
     <Content Include="requirements.txt" />
-    <Content Include="price_matching_system\static\content\bootstrap.css" />
-    <Content Include="price_matching_system\static\content\bootstrap.min.css" />
     <Content Include="price_matching_system\static\content\site.css" />
     <Content Include="price_matching_system\static\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="price_matching_system\static\fonts\glyphicons-halflings-regular.svg" />

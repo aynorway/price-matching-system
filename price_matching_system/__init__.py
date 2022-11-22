@@ -18,11 +18,16 @@ def create_app(config=None):
         CONN_STRING = f'Driver={{{DRIVER}}};Server={SERVER_NAME};Database={DATABASE_NAME};Trust_Connection=yes;'    
     )
 
+    app.secret_key = b'_5#y2L"F4Qadsadsf8z\n\xec]/'
+
     from price_matching_system import db
     db.init_app(app)
 
     from price_matching_system import search
     app.register_blueprint(search.bp)
+
+    from price_matching_system import login
+    app.register_blueprint(login.bp)
 
     app.add_url_rule("/", endpoint="home")
 
