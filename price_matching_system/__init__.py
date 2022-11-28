@@ -22,7 +22,10 @@ def create_app(config=None):
     db.init_app(app)
 
     from price_matching_system import search
+    from price_matching_system import product
+    
     app.register_blueprint(search.bp)
+    app.register_blueprint(product.bp)
 
     app.add_url_rule("/", endpoint="home")
 
