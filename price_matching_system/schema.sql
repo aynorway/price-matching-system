@@ -20,24 +20,24 @@ DROP TABLE IF EXISTS [tbl_Product];
 CREATE TABLE [tbl_User] (
     UserId		INT				NOT NULL IDENTITY,
     UserName	NVARCHAR(50)	NOT NULL,
-	FirstName	NVARCHAR(50)	NOT NULL,
-	LastName	NVARCHAR(50)	NOT NULL,
+	FirstName	NVARCHAR(250),
+	LastName	NVARCHAR(250),
 	Address1	NVARCHAR(50),
 	Address2	NVARCHAR(50),
-	City		NVARCHAR(50),
+	City		NVARCHAR(250),
 	Province	NVARCHAR(50),
-	Country		NVARCHAR(50),
+	Country		NVARCHAR(250),
 	PostalCode	NVARCHAR(20),
 	Phone		NVARCHAR(20),
-	PhotoURL	NVARCHAR(50)
+	PhotoURL	NVARCHAR(250)
 
 	CONSTRAINT PK_User PRIMARY KEY(UserId)
 )
 
 CREATE TABLE [tbl_Login] (
 	LoginId		INT				NOT NULL IDENTITY,
-	Email		NVARCHAR(50)	NOT NULL,
-	Password	NVARCHAR(100)	NOT NULL,
+	Email		NVARCHAR(250)	NOT NULL UNIQUE,
+	Password	NVARCHAR(MAX)	NOT NULL,
 	UserId		INT				NOT NULL
 
 	CONSTRAINT PK_Login PRIMARY KEY(LoginId),
@@ -46,24 +46,24 @@ CREATE TABLE [tbl_Login] (
 
 CREATE TABLE [tbl_Admin] (
 	AdminId		INT				NOT NULL IDENTITY,
-	AdminName	NVARCHAR(50)	NOT NULL,
-	Password	NVARCHAR(100)	NOT NULL
+	AdminName	NVARCHAR(250)	NOT NULL,
+	Password	NVARCHAR(MAX)	NOT NULL
 
 	CONSTRAINT PK_Admin PRIMARY KEY(AdminId),
 )
 
 CREATE TABLE [tbl_Product] (
 	ProductId	INT				NOT NULL IDENTITY,
-	ProductName	NVARCHAR(50)	NOT NULL,
+	ProductName	NVARCHAR(250)	NOT NULL,
 
 	CONSTRAINT PK_Product PRIMARY KEY(ProductId),
 )
 
 CREATE TABLE [tbl_ProductDetail] (
 	ProductDetailId		INT				NOT NULL IDENTITY,
-	Model				NVARCHAR(50)	NOT NULL,
+	Model				NVARCHAR(250)	NOT NULL,
 	Year				INT				NOT NULL,
-	Storage				NVARCHAR(50)	NOT NULL,
+	Storage				NVARCHAR(250)	NOT NULL,
 	ProductId			INT				NOT NULL 
 
 	CONSTRAINT PK_ProductDetail PRIMARY KEY(ProductDetailId),
@@ -72,8 +72,8 @@ CREATE TABLE [tbl_ProductDetail] (
 
 CREATE TABLE [tbl_Source] (
 	SourceId	INT				NOT NULL IDENTITY,
-	SourceName	NVARCHAR(50)	NOT NULL,
-	SourceURL	NVARCHAR(50)	NOT NULL,
+	SourceName	NVARCHAR(250)	NOT NULL,
+	SourceURL	NVARCHAR(250)	NOT NULL,
 
 	CONSTRAINT PK_Source PRIMARY KEY(SourceId)
 )

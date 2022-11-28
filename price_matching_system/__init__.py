@@ -15,6 +15,7 @@ def create_app(config=None):
     DATABASE_NAME = os.environ.get('DATABASE_NAME', 'PriceMatchingSystem')
 
     app.config.from_mapping(
+        SECRET_KEY="dev",
         CONN_STRING = f'Driver={{{DRIVER}}};Server={SERVER_NAME};Database={DATABASE_NAME};Trust_Connection=yes;'    
     )
 
@@ -23,9 +24,11 @@ def create_app(config=None):
 
     from price_matching_system import search
     from price_matching_system import product
+    from price_matching_system import auth
     
     app.register_blueprint(search.bp)
     app.register_blueprint(product.bp)
+    app.register_blueprint(auth.bp)
 
     app.add_url_rule("/", endpoint="home")
 
