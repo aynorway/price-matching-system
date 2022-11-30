@@ -15,40 +15,26 @@ from price_matching_system.db import get_conn
 
 bp = Blueprint("user", __name__)
 
-@bp.route("/user")
+def getPersonalInfo():
+    conn = get_conn()
+    cursor = conn.cursor()
+    query = f"""SELECT * FROM dbo.tbl_User u
+                            WHERE UserId = {g.user['UserId']}"""
+    cursor.execute(query)
+    columns = [column[0] for column in cursor.description]
+    row = cursor.fetchone()
+    personalInfo = dict(zip(columns, row))
+    return personalInfo
+
+@bp.route("/user", methods=("GET", "POST"))
 def user():
     """After user login.
     Allow user to change the person information.
     Submit button allows user to save and back to user page.
     """
+    if request.method == "GET":
+        return render_template("user.html", personalInfo = getPersonalInfo())
 
-    conn = get_conn()
-    cursor = conn.cursor()
-    query = f"""SELECT * FROM dbo.tbl_User u
-                    WHERE UserId = {session.get('login_id')}"""
-    cursor.execute(query)
-    columns = [column[0] for column in cursor.description]
-    row = cursor.fetchone()
-    personalInfo = dict(zip(columns, row))
-
-    return render_template("user.html", personalInfo = personalInfo)
-
-@bp.route("/userEdit")
-def userEdit():
-    conn = get_conn()
-    cursor = conn.cursor()
-    query = f"""SELECT * FROM dbo.tbl_User u
-                        WHERE UserId = {session.get('login_id')}"""
-    cursor.execute(query)
-    columns = [column[0] for column in cursor.description]
-    row = cursor.fetchone()
-    personalInfo = dict(zip(columns, row))
-
-    return render_template("user_edit.html", personalInfo=personalInfo)
-
-
-@bp.route("/userSave", methods=("GET", "POST"))
-def userSave():
     FirstName = request.form["FirstName"]
     LastName = request.form["LastName"]
     Address1 = request.form["Address1"]
@@ -74,7 +60,7 @@ def userSave():
                     f",[Country] = ? " \
                     f",[PostalCode] = ? " \
                     f",[Phone] = ? " \
-                    f"WHERE UserId = {session.get('login_id')}"
+                    f"WHERE UserId = {g.user['UserId']}"
             print(query)
             cursor.execute(query, FirstName, LastName, Address1, Address2, City, Province, Country, PostalCode, Phone)
             cursor.commit()
@@ -89,3 +75,9 @@ def userSave():
     flash(error)
 
     return redirect(url_for("user.user"))
+
+
+
+@bp.route("/user/edit")
+def userEdit():
+    return render_template("user_edit.html", personalInfo=getPersonalInfo())

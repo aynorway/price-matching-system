@@ -28,7 +28,6 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="price_matching_system\auth - Copy.py" />
     <Compile Include="price_matching_system\auth.py">
       <SubType>Code</SubType>
     </Compile>
