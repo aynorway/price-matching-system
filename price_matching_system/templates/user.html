@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="row mt-5">
+    <div class="col-md-4 mx-auto p-5" style="min-width: 500px; border: solid black">
+        <h1>Account Info</h1>
+        <hr />
+        <div class="mx-auto mt-5 p-2">
+            <label class="form-label" for="email">Email</label>
+            <input id="email" class="form-control form-control-lg" value="{{ g.user['Email'] }}" readonly>
+        </div>
+        <div class="mx-auto p-2">
+            <label class="form-label" for="username">Username</label>
+            <input name="username" id="username" class="form-control form-control-lg" value="{{ g.user['UserName'] }}" readonly>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4 mx-auto p-5" style="min-width: 500px; border: solid black">
+        <h1>Personal Info</h1>
+        <hr />
+        <div class="mx-auto mt-5 p-2">
+            <label class="form-label" for="FirstName">First Name</label>
+            <input name="username" id="FirstName" class="form-control form-control-lg" value="{{ personalInfo['FirstName'] }}" readonly>
+        </div>
+        <div class="mx-auto p-2">
+            <label class="form-label" for="LastName">Last Name</label>
+            <input name="username" id="LastName" class="form-control form-control-lg" value="{{ personalInfo['LastName'] }}" readonly>
+        </div>
+        <div class="mx-auto p-2">
+            <label class="form-label" for="Address1">Address 1</label>
+            <input name="Address1" id="Address1" class="form-control form-control-lg" value="{{ personalInfo['Address1'] }}" readonly>
+        </div>
+        <div class="mx-auto p-2">
+            <label class="form-label" for="Address2">Address 2</label>
+            <input name="Address2" id="Address2" class="form-control form-control-lg" value="{{ personalInfo['Address2'] }}" readonly>
+        </div>
+        <div class="mx-auto p-2">
+            <label class="form-label" for="City">City</label>
+            <input name="City" id="City" class="form-control form-control-lg" value="{{ personalInfo['City'] }}" readonly>
+        </div>
+        <div class="mx-auto p-2">
+            <label class="form-label" for="Province">Province</label>
+            <input name="Province" id="Province" class="form-control form-control-lg" value="{{ personalInfo['Province'] }}" readonly>
+        </div>
+        <div class="mx-auto p-2">
+            <label class="form-label" for="Country">Country</label>
+            <input name="Country" id="Country" class="form-control form-control-lg" value="{{ personalInfo['Country'] }}" readonly>
+        </div>
+        <div class="mx-auto p-2">
+            <label class="form-label" for="PostalCode">Postal Code</label>
+            <input name="PostalCode" id="PostalCode" class="form-control form-control-lg" value="{{ personalInfo['PostalCode'] }}" readonly>
+        </div>
+        <div class="mx-auto p-2">
+            <label class="form-label" for="Phone">Phone</label>
+            <input name="Phone" id="Phone" class="form-control form-control-lg" value="{{ personalInfo['Phone'] }}" readonly>
+        </div>
+
+<!--        ,[UserName]-->
+<!--      ,[FirstName]-->
+<!--      ,[LastName]-->
+<!--      ,[Address1]-->
+<!--      ,[Address2]-->
+<!--      ,[City]-->
+<!--      ,[Province]-->
+<!--      ,[Country]-->
+<!--      ,[PostalCode]-->
+<!--      ,[Phone]-->
+    </div>
+</div>
+
+{% endblock %}
