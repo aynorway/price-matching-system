@@ -17,9 +17,9 @@ bp = Blueprint("user", __name__)
 
 @bp.route("/user")
 def user():
-    """Register a new user.
-    Validates that the username is not already taken. Hashes the
-    password for security.
+    """After user login.
+    Allow user to change the person information.
+    Submit button allows user to save and back to user page.
     """
 
     conn = get_conn()
@@ -83,7 +83,7 @@ def userSave():
             print(ex)
             print(sqlstate)
         else:
-            # Success, go to the login page.
+            # Success, go to the user page.
             return redirect(url_for("user.user"))
 
     flash(error)
