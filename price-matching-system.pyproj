@@ -32,6 +32,9 @@
     <Compile Include="price_matching_system\auth.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="price_matching_system\bookmarks.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="price_matching_system\db.py">
       <SubType>Code</SubType>
     </Compile>
@@ -55,8 +58,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="price_matching_system\templates\auth\login.html" />
-    <Content Include="price_matching_system\templates\auth\register.html" />
+    <Content Include="price_matching_system\templates\bookmarks.html" />
     <Content Include="price_matching_system\templates\product.html" />
+    <Content Include="price_matching_system\templates\auth\register.html" />
+    <Content Include="price_matching_system\templates\product_listing.html" />
     <Content Include="requirements.txt" />
     <Content Include="price_matching_system\static\content\bootstrap.css" />
     <Content Include="price_matching_system\static\content\bootstrap.min.css" />
