@@ -14,33 +14,6 @@
     </form>
 </div>
 
-<div class="row">
-    <div class="col-md-12">
-        {% for result in search_results %}
-        <div class="card bg-light mx-5 mt-2">
-            <div class="card-body">
-                <h4 class="card-title">{{ result.get('ProductName', '') ~ ' ' ~ result.get('Model', '') ~  ' ' ~ result.get('Storage', '') ~  ', ' ~ result.get('Year', '')}}</h4>
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-9 text-center">
-                            <p class="lead">Best Deal Today By  <span class="display-6">{{ result.get('SourceName', '') }}</span>  @  <span class="display-6"> ${{ result.get('Price', '') }} </span></p>
-                        </div>
-                        <div class="col-2">
-                            <a href="{{ url_for('product.show_product_page', product_detail_id = result.get('ProductDetailId', '')) }}" class="link-secondary lead text-decoration-none">
-                                <i class="bi bi-clock-fill"></i> View History
-                            </a>
-                        </div>
-                        <div class="col-1">
-                            <a href="" class="link-secondary lead text-decoration-none">
-                                <i class="bi bi-bookmark-star-fill"></i> Bookmark
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-</div>
+{% include "product_listing.html" %}
 
 {% endblock %}
