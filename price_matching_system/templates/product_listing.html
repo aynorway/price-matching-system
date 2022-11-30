@@ -1,0 +1,80 @@
+
+<div class="row">
+    <div class="col-md-12 mt-5">
+        {% for result in results %}
+        <div class="card bg-light mx-5 mt-2">
+            <div class="card-body">
+                <h4 class="card-title">{{ result.get('ProductName', '') ~ ' ' ~ result.get('Model', '') ~  ' ' ~ result.get('Storage', '') ~  ', ' ~ result.get('Year', '')}}</h4>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-9 text-center">
+                            <p class="lead">Best Deal Today By  <span class="display-6">{{ result.get('SourceName', '') }}</span>  @  <span class="display-6"> ${{ result.get('Price', '') }} </span></p>
+                        </div>
+                        <div class="col-2">
+                            <a href="{{ url_for('product.show_product_page', product_detail_id = result.get('ProductDetailId', '')) }}" class="link-secondary lead text-decoration-none">
+                                <i class="bi bi-clock-fill"></i> View History
+                            </a>
+                        </div>
+                        {% if g.user %}
+                        <div class="col-1">
+                            <form id="{{'bookmark_form' ~ result.get('ProductDetailId', '')}}" action="{{ url_for('bookmarks.bookmark_product', product_detail_id = result.get('ProductDetailId', '')) }}" method="post" {% if result.get('IsBookmark', 0) == 1 %} hidden {% endif %}>
+                                <a href="#" onclick="javascript:add_bookmark('{{'bookmark_form' ~ result.get('ProductDetailId', '')}}', '{{'remove_bookmark_form' ~ result.get('ProductDetailId', '')}}')" class="link-secondary lead text-decoration-none">
+                                    <i class="bi bi-bookmark-star-fill"></i> Bookmark
+                                </a>
+                            </form>
+                            <form id="{{'remove_bookmark_form' ~ result.get('ProductDetailId', '')}}" action="{{ url_for('bookmarks.remove_bookmark_product', product_detail_id = result.get('ProductDetailId', '')) }}" method="post" {% if result.get('IsBookmark', 0) == 0 %} hidden {% endif %}>
+                                <a href="#" onclick="javascript:remove_bookmark('{{'bookmark_form' ~ result.get('ProductDetailId', '')}}', '{{'remove_bookmark_form' ~ result.get('ProductDetailId', '')}}')" class="link-secondary lead text-decoration-none">
+                                    <i class="bi bi-bookmark-dash-fill"></i> Remove Bookmark
+                                </a>
+                            </form>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+
+    function add_bookmark(bookmark_form_id, remove_bookmark_form_id) {
+        console.log('in add_bookmark method');
+        const bookmark_form = document.getElementById(bookmark_form_id);
+        const remove_bookmark_form = document.getElementById(remove_bookmark_form_id);
+        fetch(
+            bookmark_form.action,
+            { method: 'post' }
+        )
+            .then(resp => resp.json())
+            .then(data => {
+                console.log(data);
+                // Handle response here.
+                if (data.message == 'Success') {
+                    bookmark_form.hidden = true;
+                    remove_bookmark_form.hidden = false;
+                }
+            });
+    }
+
+    function remove_bookmark(bookmark_form_id, remove_bookmark_form_id) {
+        console.log('in remove_bookmark method');
+        const bookmark_form = document.getElementById(bookmark_form_id);
+        const remove_bookmark_form = document.getElementById(remove_bookmark_form_id);
+        fetch(
+            remove_bookmark_form.action,
+            { method: 'delete' }
+        )
+            .then(resp => resp.json())
+            .then(data => {
+                console.log(data);
+                // Handle response here.
+                if (data.message == 'Success') {
+                    remove_bookmark_form.hidden = true;
+                    bookmark_form.hidden = false;
+                }
+            });
+    }
+
+</script>

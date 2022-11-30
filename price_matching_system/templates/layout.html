@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="/static/content/site.css" />
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous" async></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js" async></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 
@@ -27,24 +27,26 @@
                         <a class="nav-item nav-link" href="{{ url_for('home') }}">Home</a>
                     </li>
                     <li>
-                        <a class="nav-item nav-link" href="{{ url_for('home') }}">My Bookmarks</a>
+                        <a class="nav-item nav-link" href="{{ url_for('bookmarks.view_bookmarks_page') }}">My Bookmarks</a>
                     </li>
                 </ul>
 
                 {% if g.user %}
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            {{ g.user['UserName'] }}
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="/user">My Profile</a></li>
-                            <li><a class="dropdown-item" href="/userEdit">Change Details</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
+
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-person-circle"></i> {{ g.user['UserName'] }}
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="/user">My Profile</a></li>
+                                <li><a class="dropdown-item" href="/userEdit">Change Details</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    
                 {% else %}
                 <ul class="navbar-nav">
                     <li>

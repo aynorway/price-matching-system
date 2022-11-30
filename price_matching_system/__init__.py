@@ -26,11 +26,13 @@ def create_app(config=None):
     from price_matching_system import product
     from price_matching_system import auth
     from price_matching_system import user
-
+    from price_matching_system import bookmarks
+    
     app.register_blueprint(search.bp)
     app.register_blueprint(product.bp)
     app.register_blueprint(auth.bp)
     app.register_blueprint(user.bp)
+    app.register_blueprint(bookmarks.bp)
 
     app.add_url_rule("/", endpoint="home")
 
