@@ -65,9 +65,18 @@ def userSave():
 
     if error is None:
         try:
-            query = f"UPDATE dbo.tbl_User SET [FirstName] = '{FirstName}' ,[LastName] = '{LastName}' ,[Address1] = '{Address1}' ,[Address2] = '{Address2}' ,[City] = '{City}' ,[Province] = '{Province}' ,[Country] = '{Country}' ,[PostalCode] = '{PostalCode}' ,[Phone] = '{Phone}' WHERE UserId = {session.get('login_id')}"
+            query = f"UPDATE dbo.tbl_User SET [FirstName] = ? " \
+                    f",[LastName] = ? " \
+                    f",[Address1] = ? " \
+                    f",[Address2] = ? " \
+                    f",[City] = ? " \
+                    f",[Province] = ? " \
+                    f",[Country] = ? " \
+                    f",[PostalCode] = ? " \
+                    f",[Phone] = ? " \
+                    f"WHERE UserId = {session.get('login_id')}"
             print(query)
-            cursor.execute(query)
+            cursor.execute(query, FirstName, LastName, Address1, Address2, City, Province, Country, PostalCode, Phone)
             cursor.commit()
         except pyodbc.Error as ex:
             sqlstate = ex.args[0]
