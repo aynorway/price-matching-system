@@ -32,26 +32,28 @@
                 </ul>
 
                 {% if g.user %}
+
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="bi bi-person-circle"></i> {{ g.user['UserName'] }}
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="#">My Profile</a></li>
-                                <li><a class="dropdown-item" href="#">Change Details</a></li>
+                                <li><a class="dropdown-item" href="/user">My Profile</a></li>
+                                <li><a class="dropdown-item" href="/user/edit">Change Details</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Logout</a></li>
                             </ul>
                         </li>
                     </ul>
+                    
                 {% else %}
                 <ul class="navbar-nav">
                     <li>
-                        <a class="nav-item nav-link" href="{{ url_for('auth.login') }}">Login</a>
+                        <a class="nav-item nav-link" href="{{ url_for('auth.register') }}">Register</a>
                     </li>
                     <li>
-                        <a class="nav-item nav-link" href="{{ url_for('auth.register') }}">Register</a>
+                        <a class="nav-item nav-link" href="{{ url_for('auth.login') }}">Login</a>
                     </li>
                 </ul>
                 {% endif %}
