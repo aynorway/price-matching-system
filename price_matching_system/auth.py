@@ -11,6 +11,7 @@ from flask import url_for
 from werkzeug.security import check_password_hash
 from werkzeug.security import generate_password_hash
 import pyodbc
+import re
 
 from price_matching_system.db import get_conn
 
@@ -71,14 +72,21 @@ def register():
         cursor = conn.cursor()
         error = None
 
+        reg = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{6,20}$"
+        pat = re.compile(reg)
+
         if not username:
             error = "Username is required."
         elif not password:
             error = "Password is required."
         elif not email:
             error = "Email is required."
+        elif len(username) < 5:
+            error = "Username should be atleast 5 characters in length"
         elif password != repeat_password:
             error = "Passwords don't match."
+        elif not re.search(pat, password):
+            error = "Password should be 6 to 20 characters in length with atleast one digit, lower case, upper case and special character."
 
         if error is None:
             try:

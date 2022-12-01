@@ -12,6 +12,7 @@ from datetime import date, datetime, timedelta
 from werkzeug.security import check_password_hash
 from werkzeug.security import generate_password_hash
 import pyodbc
+import re
 
 from price_matching_system.db import get_conn
 from price_matching_system.auth import login_required
@@ -74,11 +75,11 @@ def user():
             print(sqlstate)
         else:
             # Success, go to the user page.
-            return redirect(url_for("user.user"), title="Profile")
+            return redirect(url_for("user.user"))
 
     flash(error)
 
-    return redirect(url_for("user.user"), title="Profile")
+    return redirect(url_for("user.user"))
 
 
 
@@ -98,6 +99,9 @@ def change_user_password():
     cursor = conn.cursor()
     error = None
 
+    reg = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{6,20}$"
+    pat = re.compile(reg)
+
     if not current_password:
         error = "Username is required."
     elif not new_password:
@@ -106,6 +110,8 @@ def change_user_password():
         error = "Email is required."
     elif new_password != repeat_new_password:
         error = "Passwords don't match."
+    elif not re.search(pat, new_password):
+            error = "Password should be 6 to 20 characters in length with atleast one digit, lower case, upper case and special character."
 
     if error is None:
         try:
@@ -134,4 +140,4 @@ def change_user_password():
         flash("Password Changed Successfully", category = "info")
     else:
         flash(error)
-    return redirect(url_for("user.userEdit"), title="Edit Profile")
+    return redirect(url_for("user.userEdit"))
