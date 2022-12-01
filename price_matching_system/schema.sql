@@ -64,7 +64,8 @@ CREATE TABLE [tbl_ProductDetail] (
 	Model				NVARCHAR(250)	NOT NULL,
 	Year				INT				NOT NULL,
 	Storage				NVARCHAR(250)	NOT NULL,
-	ProductId			INT				NOT NULL 
+	ProductId			INT				NOT NULL,
+	ProductPhotoURL		NVARCHAR(250)	NULL
 
 	CONSTRAINT PK_ProductDetail PRIMARY KEY(ProductDetailId),
 	CONSTRAINT FK_ProductDetail_Product FOREIGN KEY(ProductId) REFERENCES [tbl_Product](ProductId)
@@ -109,10 +110,11 @@ INSERT INTO dbo.tbl_Product VALUES
 ,('Samsung Galaxy S22')
 
 INSERT INTO dbo.tbl_ProductDetail VALUES
-('Pro', 2022, '128GB', 1)
-,('Pro Max', 2022, '128GB', 1)
-,('Plus', 2022, '128GB', 2)
-,('Standard', 2022, '64GB', 3)
+('Pro', 2022, '128GB', 1, 'https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-13-pro-01.jpg')
+,('Pro Max', 2022, '128GB', 1, 'https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-13-pro-max-01.jpg')
+,('Standard', 2022, '128GB', 1, 'https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-13-01.jpg')
+,('Standard', 2022, '128GB', 2, 'https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-14-3.jpg')
+,('Standard', 2022, '64GB', 3, 'https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-s21-5g-0.jpg')
 
 INSERT INTO dbo.tbl_Source VALUES
 ('Amazon', 'www.amazon.ca')
@@ -132,4 +134,11 @@ INSERT INTO dbo.tbl_PriceDetail VALUES
 ,(GETDATE(), 500, 1, 2)
 ,(GETDATE(), 600, 2, 2)
 ,(DATEADD(DAY, -1, GETDATE()), 400, 1, 2)
-,(DATEADD(DAY, -1, GETDATE()), 400, 2, 2)
+,(DATEADD(DAY, -1, GETDATE()), 1400, 1, 4)
+,(DATEADD(DAY, -1, GETDATE()), 1200, 2, 4)
+,(DATEADD(DAY, -29, GETDATE()), 1700, 1, 4)
+,(DATEADD(DAY, -29, GETDATE()), 2100, 2, 4)
+,(DATEADD(DAY, -60, GETDATE()), 900, 1, 4)
+,(DATEADD(DAY, -60, GETDATE()), 2000, 2, 4)
+,(DATEADD(DAY, -90, GETDATE()), 1800, 1, 4)
+,(DATEADD(DAY, -90, GETDATE()), 2000, 2, 4)

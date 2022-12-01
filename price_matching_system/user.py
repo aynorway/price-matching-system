@@ -1,3 +1,4 @@
+from turtle import title
 from unicodedata import category
 from flask import Blueprint
 from flask import flash
@@ -36,7 +37,7 @@ def user():
     Submit button allows user to save and back to user page.
     """
     if request.method == "GET":
-        return render_template("user.html", personalInfo = getPersonalInfo())
+        return render_template("user.html", personalInfo = getPersonalInfo(), title="Profile")
 
     FirstName = request.form["FirstName"]
     LastName = request.form["LastName"]
@@ -73,18 +74,18 @@ def user():
             print(sqlstate)
         else:
             # Success, go to the user page.
-            return redirect(url_for("user.user"))
+            return redirect(url_for("user.user"), title="Profile")
 
     flash(error)
 
-    return redirect(url_for("user.user"))
+    return redirect(url_for("user.user"), title="Profile")
 
 
 
 @bp.route("/user/edit")
 @login_required
 def userEdit():
-    return render_template("user_edit.html", personalInfo=getPersonalInfo())
+    return render_template("user_edit.html", personalInfo=getPersonalInfo(), title="Edit Profile")
 
 @bp.route("/user/change_password", methods=["POST"])
 @login_required
@@ -133,4 +134,4 @@ def change_user_password():
         flash("Password Changed Successfully", category = "info")
     else:
         flash(error)
-    return redirect(url_for("user.userEdit"))
+    return redirect(url_for("user.userEdit"), title="Edit Profile")

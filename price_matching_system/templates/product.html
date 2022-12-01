@@ -2,18 +2,21 @@
 
 {% block content %}
 
-<div class="row mx-5 mt-5 p-5">
-    <div class="col-6 mr-2">
-        <h1><u>{{ product_data.get('ProductName', '') ~ ' ' ~ product_data.get('Model', '') ~  ' ' ~ product_data.get('Storage', '') ~  ', ' ~ product_data.get('Year', '')}}</u></h1>
-        <div class="mt-5">
-            <p style="font-size: 30px; font-weight: normal"> Lowest Recorded Price: ${{ stat_data.get('lowest_price', 0) }}</p>
-            <p style="font-size: 30px; font-weight: normal"> {{ stat_data.get('lowest_price_date', '') }} - {{ stat_data.get('lowest_price_source', 0) }}</p>
-        </div>
-        <div class="mt-5">
-            <p style="font-size: 30px; font-weight: bold">Todays's Prices</p>
-            {% for price in latest_price_data %}
-                <p style="font-size: 30px; font-weight: normal"> ${{ price.get('Price', 0) }} on {{ price.get('SourceName', '') }}</p>
-            {% endfor %}
+<div class="row mx-5 mt-4 p-5">
+    <h1><u>{{ product_data.get('ProductName', '') ~ ' ' ~ product_data.get('Model', '') ~  ' ' ~ product_data.get('Storage', '') ~  ', ' ~ product_data.get('Year', '')}}</u></h1>
+    <div class="col-6 mt-5 mr-5">
+        <img src="{{product_data.get('ProductPhotoURL', '')}}" alt="{{product_data.get('ProductName', '')}}" width="200" height="250" />
+        <div class="row mt-5 justify-content-start">
+            <div class="col-4">
+                <p style="font-size: 30px; font-weight: bold">Todays's Prices</p>
+                {% for price in latest_price_data %}
+                    <p style="font-size: 30px; font-weight: normal"> ${{ price.get('Price', 0) }} on {{ price.get('SourceName', '') }}</p>
+                {% endfor %}
+            </div>
+            <div class="col-6">
+                <p style="font-size: 30px; font-weight: bold">Lowest Recorded Price</p>
+                <p style="font-size: 30px; font-weight: normal"> Available for ${{ stat_data.get('lowest_price', 0) }} at {{ stat_data.get('lowest_price_source', 0) }} on {{ stat_data.get('lowest_price_date', '') }}</p>
+            </div>
         </div>
     </div>
     <div class="col-6 mt-5">
