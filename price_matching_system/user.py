@@ -1,3 +1,4 @@
+from unicodedata import category
 from flask import Blueprint
 from flask import flash
 from flask import g
@@ -12,6 +13,7 @@ from werkzeug.security import generate_password_hash
 import pyodbc
 
 from price_matching_system.db import get_conn
+from price_matching_system.auth import login_required
 
 bp = Blueprint("user", __name__)
 
@@ -27,6 +29,7 @@ def getPersonalInfo():
     return personalInfo
 
 @bp.route("/user", methods=("GET", "POST"))
+@login_required
 def user():
     """After user login.
     Allow user to change the person information.
@@ -79,5 +82,55 @@ def user():
 
 
 @bp.route("/user/edit")
+@login_required
 def userEdit():
     return render_template("user_edit.html", personalInfo=getPersonalInfo())
+
+@bp.route("/user/change_password", methods=["POST"])
+@login_required
+def change_user_password():
+    current_password = request.form["current_password"]
+    new_password = request.form["new_password"]
+    repeat_new_password = request.form["repeat_new_password"]
+
+    conn = get_conn()
+    cursor = conn.cursor()
+    error = None
+
+    if not current_password:
+        error = "Username is required."
+    elif not new_password:
+        error = "Password is required."
+    elif not repeat_new_password:
+        error = "Email is required."
+    elif new_password != repeat_new_password:
+        error = "Passwords don't match."
+
+    if error is None:
+        try:
+            query = f"SELECT * FROM dbo.tbl_Login WHERE LoginId = {g.user['LoginId']}"
+
+            cursor.execute(query)
+            columns = [column[0] for column in cursor.description]
+            row = cursor.fetchone()
+            if row is not None:
+                login = dict(zip(columns, row))
+            else:
+                login = None
+
+            if login is None:
+                error = "Not logged-in"
+            elif not check_password_hash(login["Password"], current_password):
+                error = "Incorrect password."
+            else:
+                query = f"UPDATE dbo.tbl_Login SET Password = '{generate_password_hash(new_password)}' WHERE LoginId = {g.user['LoginId']}"
+                cursor.execute(query)
+                cursor.commit()
+        except:
+            error = "Could not update password"
+    
+    if error is None:
+        flash("Password Changed Successfully", category = "info")
+    else:
+        flash(error)
+    return redirect(url_for("user.userEdit"))
