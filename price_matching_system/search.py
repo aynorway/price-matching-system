@@ -76,5 +76,6 @@ def SearchProduct():
 
     return render_template(
         'index.html',
+        title="Search",
         results = results
     )

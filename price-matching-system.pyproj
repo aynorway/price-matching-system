@@ -43,6 +43,9 @@
     <Compile Include="price_matching_system\search.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="price_matching_system\user.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="runserver.py" />
     <Compile Include="price_matching_system\__init__.py" />
   </ItemGroup>
@@ -61,29 +64,10 @@
     <Content Include="price_matching_system\templates\product.html" />
     <Content Include="price_matching_system\templates\auth\register.html" />
     <Content Include="price_matching_system\templates\product_listing.html" />
+    <Content Include="price_matching_system\templates\user.html" />
+    <Content Include="price_matching_system\templates\user_edit.html" />
     <Content Include="requirements.txt" />
-    <Content Include="price_matching_system\static\content\bootstrap.css" />
-    <Content Include="price_matching_system\static\content\bootstrap.min.css" />
     <Content Include="price_matching_system\static\content\site.css" />
-    <Content Include="price_matching_system\static\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="price_matching_system\static\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="price_matching_system\static\fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="price_matching_system\static\fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="price_matching_system\static\scripts\bootstrap.js" />
-    <Content Include="price_matching_system\static\scripts\bootstrap.min.js" />
-    <Content Include="price_matching_system\static\scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="price_matching_system\static\scripts\jquery-1.10.2.js" />
-    <Content Include="price_matching_system\static\scripts\jquery-1.10.2.min.js" />
-    <Content Include="price_matching_system\static\scripts\jquery-1.10.2.min.map" />
-    <Content Include="price_matching_system\static\scripts\jquery.validate-vsdoc.js" />
-    <Content Include="price_matching_system\static\scripts\jquery.validate.js" />
-    <Content Include="price_matching_system\static\scripts\jquery.validate.min.js" />
-    <Content Include="price_matching_system\static\scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="price_matching_system\static\scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="price_matching_system\static\scripts\modernizr-2.6.2.js" />
-    <Content Include="price_matching_system\static\scripts\respond.js" />
-    <Content Include="price_matching_system\static\scripts\respond.min.js" />
-    <Content Include="price_matching_system\static\scripts\_references.js" />
     <Content Include="price_matching_system\templates\index.html" />
     <Content Include="price_matching_system\templates\layout.html" />
   </ItemGroup>

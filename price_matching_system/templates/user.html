@@ -2,60 +2,71 @@
 
 {% block content %}
 
-<div class="row mt-5">
-    <div class="col-md-4 mx-auto p-5" style="min-width: 500px; border: solid black">
-        <h1>Account Info</h1>
-        <hr />
-        <div class="mx-auto mt-5 p-2">
-            <label class="form-label">Email</label>
-            <div>{{ g.user['Email'] }}</div>
-<!--            <input id="email" class="form-control form-control-lg" value="{{ g.user['Email'] }}" readonly>-->
-        </div>
-        <div class="mx-auto p-2">
-            <label class="form-label">Username</label>
-            <div>{{ g.user['UserName'] }}</div>
-<!--            <input name="username" id="username" class="form-control form-control-lg" value="{{ g.user['UserName'] }}" readonly>-->
+<div class="row mt-4">
+    <div class="row justify-content-start">
+        <div class="col-md-4 mx-5 p-1">
+            <h3>Account Info</h3>
+            <hr />
+            <div class="mx-auto mt-4 p-2">
+                <label class="form-label">Email</label>
+                <p class="fst-italic fw-bolder">{{ g.user['Email'] }}</p>
+            </div>
+            <div class="mx-auto p-2">
+                <label class="form-label">Username</label>
+                <p class="fst-italic fw-bolder">{{ g.user['UserName'] }}</p>
+            </div>
         </div>
     </div>
-
-    <div class="col-md-4 mx-auto p-5" style="min-width: 500px; border: solid black">
-        <h1>Personal Info</h1>
-        <hr />
-        <div class="mx-auto mt-5 p-2">
-            <label class="form-label">First Name</label>
-            <div>{{ personalInfo['FirstName'] or ''}}</div>
-        </div>
-        <div class="mx-auto p-2">
-            <label class="form-label">Last Name</label>
-            <div>{{ personalInfo['LastName'] or ''}}</div>
-        </div>
-        <div class="mx-auto p-2">
-            <label class="form-label">Address 1</label>
-            <div>{{ personalInfo['Address1'] or ''}}</div>
-        </div>
-        <div class="mx-auto p-2">
-            <label class="form-label">Address 2</label>
-            <div>{{ personalInfo['Address2'] or ''}}</div>
-        </div>
-        <div class="mx-auto p-2">
-            <label class="form-label">City</label>
-            <div>{{ personalInfo['City'] or ''}}</div>
-        </div>
-        <div class="mx-auto p-2">
-            <label class="form-label">Province</label>
-            <div>{{ personalInfo['Province'] or ''}}</div>
-        </div>
-        <div class="mx-auto p-2">
-            <label class="form-label">Country</label>
-            <div>{{ personalInfo['Country'] or ''}}</div>
-        </div>
-        <div class="mx-auto p-2">
-            <label class="form-label">Postal Code</label>
-            <div>{{ personalInfo['PostalCode'] or ''}}</div>
-        </div>
-        <div class="mx-auto p-2">
-            <label class="form-label">Phone</label>
-            <div>{{ personalInfo['Phone'] or ''}}</div>
+    <div class="row justify-content-start">
+        <div class="col-md-4 mx-5 p-1">
+            <h3>Personal Info</h3>
+            <hr />
+            <div class="row">
+                <div class="col-md-6 mx-auto p-2">
+                    <label class="form-label">First Name</label>
+                    <p class="fst-italic fw-bolder">{{ personalInfo['FirstName'] or ''}}</p>
+                </div>
+                <div class="col-md-6 mx-auto p-2">
+                    <label class="form-label">Last Name</label>
+                    <p class="fst-italic fw-bolder">{{ personalInfo['LastName'] or ''}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mx-auto p-2">
+                    <label class="form-label">Address 1</label>
+                    <p class="fst-italic fw-bolder">{{ personalInfo['Address1'] or ''}}</p>
+                </div>
+                <div class="col-md-6 mx-auto p-2">
+                    <label class="form-label">Address 2</label>
+                    <p class="fst-italic fw-bolder">{{ personalInfo['Address2'] or ''}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mx-auto p-2">
+                    <label class="form-label">City</label>
+                    <p class="fst-italic fw-bolder">{{ personalInfo['City'] or ''}}</p>
+                </div>
+                <div class="col-md-6 mx-auto p-2">
+                    <label class="form-label">Province</label>
+                    <p class="fst-italic fw-bolder">{{ personalInfo['Province'] or ''}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mx-auto p-2">
+                    <label class="form-label">Country</label>
+                    <p class="fst-italic fw-bolder">{{ personalInfo['Country'] or ''}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mx-auto p-2">
+                    <label class="form-label">Postal Code</label>
+                    <p class="fst-italic fw-bolder">{{ personalInfo['PostalCode'] or ''}}</p>
+                </div>
+                <div class="col-md-6 mx-auto p-2">
+                    <label class="form-label">Phone</label>
+                    <p class="fst-italic fw-bolder">{{ personalInfo['Phone'] or ''}}</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>

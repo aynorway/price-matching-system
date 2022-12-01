@@ -2,73 +2,116 @@
 
 {% block content %}
 
-<form action="{{ url_for('user.user') }}" method="post">
-
-<div class="row mt-5">
-    <div class="col-md-4 mx-auto p-5" style="min-width: 500px; border: solid black">
-        <h1>Account Info</h1>
-        <hr />
-        <div class="mx-auto mt-5 p-2">
-            <label class="form-label">Email</label>
-            <div>{{ g.user['Email'] }}</div>
-<!--            <input id="email" class="form-control form-control-lg" value="{{ g.user['Email'] }}" readonly>-->
+<div class="row mt-4">
+    <div class="col-md-5 mx-auto p-1">
+        <div class="row">
+            <h3>Account Info</h3>
+            <hr />
+            <div class="mx-auto p-2">
+                <label class="form-label">Email</label>
+                <p class="fst-italic fw-bolder">{{ g.user['Email'] }}</p>
+            </div>
+            <div class="mx-auto p-2">
+                <label class="form-label">Username</label>
+                <p class="fst-italic fw-bolder">{{ g.user['UserName'] }}</p>
+            </div>
         </div>
-        <div class="mx-auto p-2">
-            <label class="form-label">Username</label>
-            <div>{{ g.user['UserName'] }}</div>
-<!--            <input name="username" id="username" class="form-control form-control-lg" value="{{ g.user['UserName'] }}" readonly>-->
+        <div class="row mt-4 justify-content-start">
+            <h3>Change Password</h3>
+            <hr />
+            <form action="{{ url_for('user.change_user_password') }}" method="post">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ 'success' if category == 'info' else 'danger' }}" role="alert">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                <div class="w-50 p-2">
+                    <label class="form-label" for="current_password">Password</label>
+                    <input type="password" name="current_password" id="current_password" class="form-control form-control-lg" required>
+                </div>
+                <div class="w-50 p-2">
+                    <label class="form-label" for="new_password">New Password</label>
+                    <input type="password" name="new_password" id="new_password" class="form-control form-control-lg" required>
+                </div>
+                <div class="w-50 p-2">
+                    <label class="form-label" for="repeat_new_password">Repeat Password</label>
+                    <input type="password" name="repeat_new_password" id="repeat_new_password" class="form-control form-control-lg" required>
+                </div>
+                <div class="mx-auto mt-4 p-2 d-flex justify-content-start">
+                    <button class="btn btn-primary" type="submit">Change Password</button>
+                </div>
+            </form>
         </div>
+    </div>
+    <div class="col-md-5 mx-auto">
+        <div class="row">
+            <h3>Personal Info</h3>
+            <hr />
+        </div>
+        <form action="{{ url_for('user.user') }}" method="post">
+            <div class="row">
+                <div class="col-md-6 mx-auto p-2">
+                    <label class="form-label" for="FirstName">First Name</label>
+                    <input name="FirstName" id="FirstName" class="form-control form-control-lg" value="{{ personalInfo['FirstName'] or ''}}">
+                </div>
+                <div class="col-md-6 mx-auto p-2">
+                    <label class="form-label" for="LastName">Last Name</label>
+                    <input name="LastName" id="LastName" class="form-control form-control-lg" value="{{ personalInfo['LastName'] or ''}}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mx-auto p-2">
+                    <label class="form-label" for="Address1">Address 1</label>
+                    <input name="Address1" id="Address1" class="form-control form-control-lg" value="{{ personalInfo['Address1'] or ''}}">
+                </div>
+                <div class="col-md-6 mx-auto p-2">
+                    <label class="form-label" for="Address2">Address 2</label>
+                    <input name="Address2" id="Address2" class="form-control form-control-lg" value="{{ personalInfo['Address2'] or ''}}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mx-auto p-2">
+                    <label class="form-label" for="City">City</label>
+                    <input name="City" id="City" class="form-control form-control-lg" value="{{ personalInfo['City'] or ''}}">
+                </div>
+                <div class="col-md-4 mx-auto p-2">
+                    <label class="form-label" for="Province">Province</label>
+                    <input name="Province" id="Province" class="form-control form-control-lg" value="{{ personalInfo['Province'] or ''}}">
+                </div>
+                <div class="col-md-4 mx-auto p-2">
+                    <label class="form-label" for="Country">Country</label>
+                    <input name="Country" id="Country" class="form-control form-control-lg" value="{{ personalInfo['Country'] or ''}}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mx-auto p-2">
+                    <label class="form-label" for="PostalCode">Postal Code</label>
+                    <input name="PostalCode" id="PostalCode" class="form-control form-control-lg" value="{{ personalInfo['PostalCode'] or ''}}">
+                </div>
+                <div class="col-md-6 mx-auto p-2">
+                    <label class="form-label" for="Phone">Phone</label>
+                    <input name="Phone" id="Phone" class="form-control form-control-lg" value="{{ personalInfo['Phone'] or ''}}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="mx-auto mt-4 p-2 d-flex justify-content-start">
+                    <button class="btn btn-primary" type="submit">Save</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
 
-<div class="row mt-5">
-    <div class="col-md-4 mx-auto p-5" style="min-width: 500px; border: solid black">
-        <h1>Personal Info</h1>
-        <hr />
-        <div class="mx-auto mt-5 p-2">
-            <label class="form-label" for="FirstName">First Name</label>
-            <input name="FirstName" id="FirstName" class="form-control form-control-lg" value="{{ personalInfo['FirstName'] or ''}}" >
-        </div>
-        <div class="mx-auto p-2">
-            <label class="form-label" for="LastName">Last Name</label>
-            <input name="LastName" id="LastName" class="form-control form-control-lg" value="{{ personalInfo['LastName'] or ''}}" >
-        </div>
-        <div class="mx-auto p-2">
-            <label class="form-label" for="Address1">Address 1</label>
-            <input name="Address1" id="Address1" class="form-control form-control-lg" value="{{ personalInfo['Address1'] or ''}}" >
-        </div>
-        <div class="mx-auto p-2">
-            <label class="form-label" for="Address2">Address 2</label>
-            <input name="Address2" id="Address2" class="form-control form-control-lg" value="{{ personalInfo['Address2'] or ''}}" >
-        </div>
-        <div class="mx-auto p-2">
-            <label class="form-label" for="City">City</label>
-            <input name="City" id="City" class="form-control form-control-lg" value="{{ personalInfo['City'] or ''}}" >
-        </div>
-        <div class="mx-auto p-2">
-            <label class="form-label" for="Province">Province</label>
-            <input name="Province" id="Province" class="form-control form-control-lg" value="{{ personalInfo['Province'] or ''}}" >
-        </div>
-        <div class="mx-auto p-2">
-            <label class="form-label" for="Country">Country</label>
-            <input name="Country" id="Country" class="form-control form-control-lg" value="{{ personalInfo['Country'] or ''}}" >
-        </div>
-        <div class="mx-auto p-2">
-            <label class="form-label" for="PostalCode">Postal Code</label>
-            <input name="PostalCode" id="PostalCode" class="form-control form-control-lg" value="{{ personalInfo['PostalCode'] or ''}}" >
-        </div>
-        <div class="mx-auto p-2">
-            <label class="form-label" for="Phone">Phone</label>
-            <input name="Phone" id="Phone" class="form-control form-control-lg" value="{{ personalInfo['Phone'] or ''}}" >
-        </div>
-        <div class="mx-auto mt-5 d-flex justify-content-center">
-            <button class="btn btn-primary" type="submit">Save</button>
-        </div>
-    </div>
-</div>
 
 
 
-</form>
+
+
+
+
+
+
 
 {% endblock %}

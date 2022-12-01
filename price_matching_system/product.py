@@ -45,7 +45,7 @@ def show_product_page(product_detail_id):
     print(results)
 
     query = f"""
-        SELECT ProductName, Model, Year, Storage
+        SELECT ProductName, Model, Year, Storage, ProductPhotoURL
         FROM dbo.tbl_Product p
         INNER JOIN tbl_ProductDetail prd
         ON p.ProductId = prd.ProductId
