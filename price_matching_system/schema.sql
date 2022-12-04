@@ -126,11 +126,11 @@ INSERT INTO dbo.tbl_ProductDetail VALUES
 ,('Ultra 5G', 2022, '64GB', 4, 'https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-s22-ultra-5g-2.jpg')
 ,('Pro', 2021, '128GB', 5, 'https://fdn2.gsmarena.com/vv/pics/google/google-pixel-6-pro-1.jpg')
 ,('', 2022, '128GB', 6, 'https://fdn2.gsmarena.com/vv/pics/google/google-pixel7-2.jpg')
-,('M2"', 2022, '512GB', 6, 'https://nanoreview.net/common/images/laptop/apple-macbook-air-m2-2022-mini.jpeg')
-,('16"', 2022, '512GB', 6, 'https://nanoreview.net/common/images/laptop/apple-macbook-pro-13-2019-mini.jpeg')
-,('Gen 5 Intel (16”)', 2022, '512GB', 6, 'https://nanoreview.net/common/images/laptop/lenovo-thinkpad-p1-gen-5-mini.jpeg')
-,('R2', 2022, '128GB', 6, 'https://nanoreview.net/common/images/laptop/dell-alienware-x17-r2-mini.jpeg')
-,('14"', 2022, '512GB', 6, 'https://nanoreview.net/common/images/laptop/huawei-matebook-14-mini.jpeg')
+,('M2"', 2022, '512GB', 7, 'https://nanoreview.net/common/images/laptop/apple-macbook-air-m2-2022-mini.jpeg')
+,('16"', 2022, '512GB', 8, 'https://nanoreview.net/common/images/laptop/apple-macbook-pro-13-2019-mini.jpeg')
+,('Gen 5 Intel (16”)', 2022, '512GB', 9, 'https://nanoreview.net/common/images/laptop/lenovo-thinkpad-p1-gen-5-mini.jpeg')
+,('R2', 2022, '128GB', 10, 'https://nanoreview.net/common/images/laptop/dell-alienware-x17-r2-mini.jpeg')
+,('14"', 2022, '512GB', 11, 'https://nanoreview.net/common/images/laptop/huawei-matebook-14-mini.jpeg')
 
 INSERT INTO dbo.tbl_Source VALUES
 ('Amazon', 'www.amazon.ca')
